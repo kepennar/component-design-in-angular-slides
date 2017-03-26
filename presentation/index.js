@@ -1,5 +1,6 @@
 // Import React
 import React from "react";
+import CodeSlide from "spectacle-code-slide";
 
 // Import Spectacle Core tags
 import {
@@ -11,7 +12,9 @@ import {
   List,
   Quote,
   Slide,
-  Text
+  Text,
+  Link,
+  Appear
 } from "spectacle";
 
 // Import image preloader util
@@ -23,63 +26,131 @@ import createTheme from "spectacle/lib/themes/default";
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
-
+require("../assets/fonts/fonts.css");
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  atomDesign: require("../assets/atomic-design.png"),
+  chemicalEq: require("../assets/chemical-equation.png"),
+  htmlTable: require("../assets/html-periodic-table.png"),
+  polymerElements: require("../assets/polymer-elements.png"),
+  angular: require("../assets/angular-icon.svg")
 };
 
 preloader(images);
 
-const theme = createTheme({
-  primary: "white",
-  secondary: "#1F2022",
-  tertiary: "#03A9FC",
-  quartenary: "#CECECE"
-}, {
-  primary: "Montserrat",
-  secondary: "Helvetica"
-});
+const theme = createTheme(
+  {
+    primary: "#EEE",
+    secondary: "#1F2022",
+    tertiary: "#42affa",
+    quartenary: "#CECECE"
+  },
+  {
+    primary: "Roboto",
+    secondary: "Track"
+  }
+);
 
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck transition={["zoom", "slide"]} transitionDuration={500} theme={theme}>
+      <Deck
+        transition={[]}
+        transitionDuration={500}
+        theme={theme}
+        progress="bar"
+      >
         <Slide transition={["zoom"]} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
+          <Heading
+            size={1}
+            fit
+            caps
+            lineHeight={2}
+            textFont="secondary"
+            textColor="secondary"
+          >
+            Atomic components design
           </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            open the presentation/index.js file to get started
+          <Text textColor="tertiary" size={1} fit bold>
+            Comment architecturer ses composants en Angular
           </Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>Typography</Heading>
-          <Heading size={1} textColor="secondary">Heading 1</Heading>
-          <Heading size={2} textColor="secondary">Heading 2</Heading>
-          <Heading size={3} textColor="secondary">Heading 3</Heading>
-          <Heading size={4} textColor="secondary">Heading 4</Heading>
-          <Heading size={5} textColor="secondary">Heading 5</Heading>
-          <Text size={6} textColor="secondary">Standard text</Text>
+
+        {/*Intro*/}
+        <Slide
+          transition={["fade"]}
+          bgImage={images.atomDesign}
+          bgColor="#f6f5de"
+        />
+        <Slide transition={["fade"]} bgColor="#f6f5de">
+          <Heading size={2} textColor="#78776A" textFont="secondary" caps>
+            Concept ancien
+          </Heading>
+          <Appear>
+            <Text textColor="secondary" size={1} fit bold>
+              Brad Frost a écrit <b>Atomic Design</b> en 2013&nbsp;
+              <Link
+                size={1}
+                href="http://bradfrost.com/blog/post/atomic-web-design/"
+              >
+                http://bradfrost.com/blog/post/atomic-web-design/
+              </Link>
+            </Text>
+          </Appear>
         </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Standard List</Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-          </List>
+        <Slide
+          transition={["fade"]}
+          bgImage={images.htmlTable}
+          bgColor="#f6f5de"
+        />
+        <Slide
+          transition={["fade"]}
+          bgImage={images.chemicalEq}
+          bgColor="#f6f5de"
+        />
+        <Slide
+          transition={["fade"]}
+          bgImage={images.atomDesign}
+          bgColor="#f6f5de"
+        />
+        <Slide
+          transition={["fade"]}
+          bgImage={images.polymerElements}
+          bgColor="#f6f5de"
+        />
+
+        {/*Angular*/}
+        <Slide textColor="tertiary" bgImage={images.angular} transition={["zoom"]}>
+          <Heading size={2} textColor="secondary" textFont="secondary" caps>
+            Angular
+          </Heading>
+          <Text>
+            ?
+          </Text>
         </Slide>
-        <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
+        <Slide transition={["fade"]}>
+          <Heading size={3} caps textFont="secondary">
+            Smart / Dumb
+          </Heading>
+          <Appear>
+            <Text size={3} textColor="secondary">
+              Container / Presentational
+            </Text>
+          </Appear>
         </Slide>
+        <CodeSlide
+          transition={[]}
+          lang="js"
+          code={require("!raw-loader!../assets/code.example1")}
+          ranges={[
+            { loc: [0, 10], title: "Presentational component" },
+            { loc: [0, 1], title: "The Beginning" },
+            { loc: [1, 2] },
+            { loc: [1, 2], note: "Heres a note!" },
+            { loc: [2, 3] },
+            { loc: [8, 10] }
+          ]}
+        />
       </Deck>
     );
   }

@@ -51,7 +51,7 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.svg$/,
-      loader: "url-loader?limit=10000&mimetype=image/svg+xml",
+      loader: "url-loader?limit=10000&encoding=url",
       include: path.join(__dirname, "assets")
     }, {
       test: /\.png$/,
@@ -64,6 +64,10 @@ module.exports = {
     }, {
       test: /\.jpg$/,
       loader: "url-loader?mimetype=image/jpg",
+      include: path.join(__dirname, "assets")
+    }, {
+      test: /\.(otf|eot|ttf|woff|woff2)$/,
+      loader: 'file-loader',
       include: path.join(__dirname, "assets")
     }]
   }
