@@ -44,8 +44,8 @@ preloader(images);
 const theme = createTheme(
   {
     primary: "#EEE",
-    secondary: "#b52e31",
-    tertiary: "#42affa",
+    secondary: "#1F2022",
+    tertiary: "#b52e31",
     quartenary: "#CECECE"
   },
   {
