@@ -1,0 +1,13 @@
+<button (click)="onActivate.next()">
+ Display comments
+</button>
+<div [hidden]="!data">
+ <form (submit)="comment(newComment)">
+  <input [(ng-model)]="newComment" />
+  <button type="submit">Comment</button>
+ </form>
+ <span *ng-if="!data">No comments</span>
+ <div *ng-for="#comment of data">
+  {{comment.text}}
+ </div>
+</div>

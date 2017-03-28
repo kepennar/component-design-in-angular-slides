@@ -1,0 +1,7 @@
+<button (click)="onActivate.next()">
+ Display comments
+</button>
+<div [hidden]="activated">
+ <comment-form></comment-form>
+ <comments-list></comments-list>
+</div>
